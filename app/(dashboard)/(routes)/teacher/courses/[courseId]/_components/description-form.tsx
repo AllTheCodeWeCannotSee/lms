@@ -60,10 +60,10 @@ export const DescriptionForm = ({
                 Course description
                 <Button onClick={toggleEdit} variant="ghost">
                     {isEditing ? (
-                            <>
+                            <div className="text-red-600 flex items-center">
                                 <XSquare className="h-4 w-4 mr-2"/>
                                 Cancel
-                            </>
+                            </div>
                         ) :
                         (
                             <>
