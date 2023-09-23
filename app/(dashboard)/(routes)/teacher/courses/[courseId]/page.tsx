@@ -5,6 +5,7 @@ import {auth} from "@clerk/nextjs";
 import {db} from "@/lib/db";
 import { IconBadge } from "@/components/icon-badge";
 import {TitleForm} from "@/app/(dashboard)/(routes)/teacher/courses/[courseId]/_components/title-form";
+import {DescriptionForm} from "@/app/(dashboard)/(routes)/teacher/courses/[courseId]/_components/description-form";
 
 const CourseIdPage = async ({
     params
@@ -63,6 +64,10 @@ const CourseIdPage = async ({
                     </div>
 
                     <TitleForm
+                        initialData={course}
+                        courseId={course.id}
+                    />
+                    <DescriptionForm
                         initialData={course}
                         courseId={course.id}
                     />
