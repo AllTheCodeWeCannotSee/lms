@@ -2,7 +2,7 @@ import {auth} from "@clerk/nextjs";
 import {redirect} from "next/navigation";
 import {db} from "@/lib/db";
 import Link from "next/link";
-import {ArrowLeft, LayoutDashboard} from "lucide-react";
+import {ArrowLeft, Eye, LayoutDashboard, Video} from "lucide-react";
 import {IconBadge} from "@/components/icon-badge";
 import {
     ChapterTitleForm
@@ -10,12 +10,15 @@ import {
 import {
     ChapterDescriptionForm
 } from "@/app/(dashboard)/(routes)/teacher/courses/[courseId]/chapters/[chapterId]/_components/chapter-description-form";
+import {
+    ChapterAccessForm
+} from "@/app/(dashboard)/(routes)/teacher/courses/[courseId]/chapters/[chapterId]/_components/chapter-access-form";
 
-const ChapterIdPage = async ({params}: { params: {courseId: string; chapterId: string }})=> {
-    const { userId } = auth();
+const ChapterIdPage = async ({params}: { params: { courseId: string; chapterId: string } }) => {
+    const {userId} = auth();
 
     if (!userId) {
-        return  redirect("/");
+        return redirect("/");
     }
 
     const chapter = await db.chapter.findUnique({
@@ -51,7 +54,7 @@ const ChapterIdPage = async ({params}: { params: {courseId: string; chapterId: s
                         href={`/teacher/courses/${params.courseId}`}
                         className="flex items-center text-sm hover:opacity-75 transition mb-6"
                     >
-                        <ArrowLeft  className="h-4 w-4 mr-2"/>
+                        <ArrowLeft className="h-4 w-4 mr-2"/>
                         Back to course setup
                     </Link>
                     <div className="flex items-center justify-between w-full">
@@ -70,7 +73,7 @@ const ChapterIdPage = async ({params}: { params: {courseId: string; chapterId: s
                 <div className="space-y-4">
                     <div>
                         <div className="flex items-center gap-x-2">
-                            <IconBadge icon={LayoutDashboard} />
+                            <IconBadge icon={LayoutDashboard}/>
                             <h2 className="text-xl">
                                 Customize your chapter
                             </h2>
@@ -80,7 +83,32 @@ const ChapterIdPage = async ({params}: { params: {courseId: string; chapterId: s
                             courseId={params.courseId}
                             chapterId={params.chapterId}
                         />
-                        <ChapterDescriptionForm initialData={chapter} courseId={params.courseId} chapterId={params.chapterId} />
+                        <ChapterDescriptionForm
+                            initialData={chapter}
+                            courseId={params.courseId}
+                            chapterId={params.chapterId}
+                        />
+                    </div>
+                    <div>
+                        <div className="flex items-center gap-x-2">
+                            <IconBadge icon={Eye}/>
+                            <h2 className="text-xl">
+                                Access Settings
+                            </h2>
+                        </div>
+                        <ChapterAccessForm
+                            initialData={chapter}
+                            courseId={params.courseId}
+                            chapterId={params.chapterId}
+                        />
+                    </div>
+                </div>
+                <div>
+                    <div className="flex items-center gap-x-2">
+                        <IconBadge icon={Video} />
+                        <h2 className="text-xl">
+                            Add a video
+                        </h2>
                     </div>
                 </div>
             </div>
