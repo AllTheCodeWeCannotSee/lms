@@ -2,12 +2,14 @@ import {auth} from "@clerk/nextjs";
 import {redirect} from "next/navigation";
 import {db} from "@/lib/db";
 import Link from "next/link";
-import {Arrow} from "@radix-ui/react-arrow";
 import {ArrowLeft, LayoutDashboard} from "lucide-react";
 import {IconBadge} from "@/components/icon-badge";
 import {
     ChapterTitleForm
 } from "@/app/(dashboard)/(routes)/teacher/courses/[courseId]/chapters/[chapterId]/_components/chapter-title-form";
+import {
+    ChapterDescriptionForm
+} from "@/app/(dashboard)/(routes)/teacher/courses/[courseId]/chapters/[chapterId]/_components/chapter-description-form";
 
 const ChapterIdPage = async ({params}: { params: {courseId: string; chapterId: string }})=> {
     const { userId } = auth();
@@ -78,6 +80,7 @@ const ChapterIdPage = async ({params}: { params: {courseId: string; chapterId: s
                             courseId={params.courseId}
                             chapterId={params.chapterId}
                         />
+                        <ChapterDescriptionForm initialData={chapter} courseId={params.courseId} chapterId={params.chapterId} />
                     </div>
                 </div>
             </div>
