@@ -151,7 +151,7 @@ export async function PATCH(
                 data: {
                     chapterId: params.chapterId,
                     assetId: asset.id,
-                    playbackId: asset.playback_ids?.[0].id,
+                    playbackId: asset.playback_ids?.[0]?.id,
                 }
             });
         }

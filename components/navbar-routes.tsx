@@ -34,13 +34,13 @@ export const NavbarRoutes = () => {
                         </Button>
                     </Link>
 
-                ) : isTeacher(userId) ? (
+                ) : (
                     <Link href="/teacher/courses">
                         <Button size="sm" variant="ghost">
                             Teacher mode
                         </Button>
                     </Link>
-                ) : null}
+                ) }
                 <UserButton
                     afterSignOutUrl="/"
                 />
