@@ -7,7 +7,6 @@ import Link from "next/link";
 import { useAuth, UserButton} from "@clerk/nextjs";
 import {Button} from "@/components/ui/button";
 import {SearchInput} from "@/components/search-input";
-import {isTeacher} from "@/lib/teacher";
 
 export const NavbarRoutes = () => {
     const pathname = usePathname();
